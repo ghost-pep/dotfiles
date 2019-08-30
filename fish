@@ -1,0 +1,1 @@
+/Users/ghostpepper/.config/fish
