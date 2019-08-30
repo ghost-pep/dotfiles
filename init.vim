@@ -119,3 +119,9 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
 \ '_': ['ale'],
 \})
+
+" switch windows easily
+map <C-j> <C-w>j
+map <C-h> <C-w>h
+map <C-k> <C-w>k
+map <C-l> <C-w>l
