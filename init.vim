@@ -23,6 +23,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'ludovicchabant/vim-gutentags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,6 +67,7 @@ set softtabstop=4
 set tabstop=4
 set noexpandtab
 
+" MACOS ONLY
 " Make ` be the escape key to avoid using the stupid touchbar
 inoremap ` <Esc>
 
@@ -119,11 +122,6 @@ nnoremap <leader><leader> <c-^>
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
-" " Use ALE for all completion
-" call deoplete#custom#option('sources', {
-" \ '_': ['ale'],
-" \})
-
 " use rust ale linters
 let g:ale_linters = {'rust': ['cargo', 'rustfmt', 'rls']}
 
@@ -137,3 +135,11 @@ map <C-l> <C-w>l
 
 " rustfmt command location
 let g:rustfmt_command = '/Users/ghostpepper/.cargo/bin/rustfmt'
+
+" Open NERDTree automatically
+autocmd vimenter * NERDTree
+" Close NERDTree automatically
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Help vim find tags
+set tags=.git/tags,./.git/tags,tags,./tags
