@@ -1,4 +1,7 @@
-set -gx PATH ~/Library/Android/sdk/build-tools/29.0.1 $PATH
+set -gx ANDROID_HOME ~/Library/Android/sdk
+set -gx ANDROID_SDK_ROOT ~/Library/Android/sdk
+set -gx ANDROID_AVD_HOME ~/.android/avd
+set -gx PATH ~/Library/Android/sdk/build-tools/29.0.1 $ANDROID_HOME/emulator $ANDROID_HOME/tools $PATH
 
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
@@ -11,3 +14,5 @@ setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 thefuck --alias | source
+
+source ~/.cargo/env

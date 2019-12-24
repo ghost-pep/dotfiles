@@ -14,7 +14,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'dense-analysis/ale'
@@ -49,7 +49,11 @@ set encoding=utf-8
 set scrolloff=2
 set noshowmode
 set hidden
-set nowrap
+" wrapping settings
+set wrap
+set linebreak
+set textwidth=80
+set wrapmargin=80
 set nojoinspaces
 
 " Sane splits
@@ -115,13 +119,21 @@ nnoremap <leader><leader> <c-^>
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
-" Use ALE for all completion
-call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
+" " Use ALE for all completion
+" call deoplete#custom#option('sources', {
+" \ '_': ['ale'],
+" \})
+
+" use rust ale linters
+let g:ale_linters = {'rust': ['cargo', 'rustfmt', 'rls']}
+
+let g:rustfmt_autosave = 1
 
 " switch windows easily
 map <C-j> <C-w>j
 map <C-h> <C-w>h
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" rustfmt command location
+let g:rustfmt_command = '/Users/ghostpepper/.cargo/bin/rustfmt'
