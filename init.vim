@@ -25,6 +25,8 @@ Plugin 'airblade/vim-rooter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'majutsushi/tagbar'
+Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,35 +46,54 @@ filetype plugin indent on    " required
 " Quick-save
 nmap <leader>w :w<CR>
 
-filetype plugin indent on
+" Set the path to recurse search for files lower in a project
+set path+=**
+
+" Display all matching files when trying to tab complete finding files
+set wildmenu
+set wildmode=list:longest
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2154516/delay-before-o-opens-a-new-line
+set updatetime=300
 set encoding=utf-8
 set scrolloff=2
+
+" Hide the '--INSERT--' in the command bar area
 set noshowmode
 set hidden
+
 " wrapping settings
 set wrap
 set linebreak
-set textwidth=80
-set wrapmargin=80
+set textwidth=100
+set wrapmargin=100
 set nojoinspaces
+
+" Wrapping options
+set formatoptions=tc " wrap text and comments using textwidth
+set formatoptions+=r " continue comments when pressing ENTER in I mode
+set formatoptions+=q " enable formatting of comments with gq
+set formatoptions+=n " detect lists for formatting
+set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
 
 " Sane splits
 set splitright
 set splitbelow
 
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set noexpandtab
+set shiftwidth=8
+set softtabstop=8
+set tabstop=8
+set expandtab
 
 " MACOS ONLY
 " Make ` be the escape key to avoid using the stupid touchbar
-inoremap ` <Esc>
-
-"make esc do nothing"
-inoremap <Esc> <Nop>
+if has('macunix')
+    inoremap ` <Esc>
+    "make esc do nothing
+    inoremap <Esc> <Nop>
+endif
 
 " Proper search
 set incsearch
@@ -104,7 +125,7 @@ set diffopt+=iwhite " No whitespace in vimdiff
 " Make diffing better: https://vimways.org/2018/the-power-of-diff/
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
-set colorcolumn=80 " and give me a colored column
+set colorcolumn=100 " and give me a colored column
 " make the color of the column be decent
 highlight ColorColumn ctermbg=DarkGray
 set showcmd " Show (partial) command in status line.
@@ -112,9 +133,10 @@ set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
 
 " Show those damn hidden characters
-" Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
 set nolist
-set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+" The following is the non-verbose one:
+" set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
@@ -137,9 +159,26 @@ map <C-l> <C-w>l
 let g:rustfmt_command = '/Users/ghostpepper/.cargo/bin/rustfmt'
 
 " Open NERDTree automatically
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 " Close NERDTree automatically
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" show hidden files in NERDTree
+let NERDTreeShowHidden=1
 
 " Help vim find tags
-set tags=.git/tags,./.git/tags,tags,./tags
+set tags=.git/tags,./.git/tags,./tags
+
+" 256 colors for vim
+let base16colorspace=256
+silent! colorscheme base16-gruvbox-dark-medium
+
+" Copy and paste to system clipboard with leader y and leader p
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
+" A little bit of a bigger command window
+set cmdheight=2
