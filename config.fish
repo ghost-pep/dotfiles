@@ -5,7 +5,8 @@ set -gx PATH ~/Library/Android/sdk/build-tools/29.0.1 $ANDROID_HOME/emulator $AN
 set -gx PATH /usr/local/sbin /usr/local/bin $PATH
 
 # add go binaries to path
-set -gx PATH ~/go/bin $PATH
+set -gx GOPATH ~/go
+set -gx PATH $GOPATH/bin $PATH
 
 # GBA dev
 set -gx DEVKITPRO /opt/devkitpro
