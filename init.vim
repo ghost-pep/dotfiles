@@ -13,6 +13,7 @@ Plug 'VundleVim/Vundle.vim'
 
 " Gotta have it
 Plug 'gruvbox-community/gruvbox'
+" Plug 'dguo/blood-moon', {'rtp': 'applications/vim'}
 Plug 'itchyny/lightline.vim'
 
 " Hehe coc
@@ -35,6 +36,9 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'dag/vim-fish'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
+
+" Markdown previewer
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 call plug#end()
 
@@ -110,16 +114,7 @@ nmap <leader>gs :G<CR>
 nmap <leader>gf :diffget \\2<CR>
 nmap <leader>gj :diffget \\3<CR>
 
-" Coc Settings
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" Symbol renaming.
+"coc stuff
 nmap <leader>rn <Plug>(coc-rename)
 
 " MACOS ONLY
@@ -193,7 +188,7 @@ let NERDTreeShowHidden=1
 set tags=.git/tags,./.git/tags,./tags
 
 " 256 colors for vim
-let base16colorspace=256
+" let base16colorspace=256
 silent! colorscheme gruvbox
 
 " Copy and paste to system clipboard with leader y and leader p
@@ -241,7 +236,7 @@ au Filetype python
     \ | setlocal fileformat=unix
     \ | match BadWhitespace /\s\+$/
 " Snakemake support
-autocmd BufRead *.snake set filetype=conf
+autocmd BufNewFile,BufRead *.snake set ft=conf
 
 " ====== WEB DEV SUPPORT ======
 au Filetype javascript,html,css 

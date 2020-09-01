@@ -15,6 +15,7 @@ set -gx DEVKITPPC $DEVKITPRO/devkitPPC
 
 set -gx PATH $DEVKITPRO/tools/bin $PATH
 
+set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
@@ -37,8 +38,5 @@ eval /Users/ghostpepper/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 set -gx PATH /Users/ghostpepper/Documents/projects/massdns/scripts/ $PATH
 
-# Base16 Shell
-if status --is-interactive
-    set BASE16_SHELL "$HOME/.config/base16-shell/"
-    source "$BASE16_SHELL/profile_helper.fish"
-end
+
+set -gx PATH $PATH /opt/metasploit-framework/bin
