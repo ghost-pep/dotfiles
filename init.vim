@@ -12,8 +12,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
 
 " Gotta have it
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
 " Plug 'dguo/blood-moon', {'rtp': 'applications/vim'}
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 
 " Hehe coc
@@ -189,7 +190,7 @@ set tags=.git/tags,./.git/tags,./tags
 
 " 256 colors for vim
 " let base16colorspace=256
-silent! colorscheme gruvbox
+silent! colorscheme dracula
 
 " Copy and paste to system clipboard with leader y and leader p
 vmap <Leader>y "+y
