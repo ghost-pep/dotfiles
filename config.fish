@@ -1,19 +1,8 @@
-set -gx ANDROID_HOME ~/Library/Android/sdk
-set -gx ANDROID_SDK_ROOT ~/Library/Android/sdk
-set -gx ANDROID_AVD_HOME ~/.android/avd
-set -gx PATH ~/Library/Android/sdk/build-tools/29.0.1 $ANDROID_HOME/emulator $ANDROID_HOME/tools $PATH
 set -gx PATH /usr/local/sbin /usr/local/bin $PATH
 
 # add go binaries to path
 set -gx GOPATH ~/go
 set -gx PATH $GOPATH/bin $PATH
-
-# GBA dev
-set -gx DEVKITPRO /opt/devkitpro
-set -gx DEVKITARM $DEVKITPRO/devkitARM
-set -gx DEVKITPPC $DEVKITPRO/devkitPPC
-
-set -gx PATH $DEVKITPRO/tools/bin $PATH
 
 set -gx JAVA_HOME (/usr/libexec/java_home)
 
@@ -27,16 +16,14 @@ setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
-thefuck --alias | source
-
 source ~/.cargo/env
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /Users/ghostpepper/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-set -gx PATH /Users/ghostpepper/Documents/projects/massdns/scripts/ $PATH
-
-
 set -gx PATH $PATH /opt/metasploit-framework/bin
+
+fish_add_path ~/.emacs.d/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ghostpepper/Documents/projects/google-cloud-sdk/path.fish.inc' ]; . '/Users/ghostpepper/Documents/projects/google-cloud-sdk/path.fish.inc'; end
+
+starship init fish | source
