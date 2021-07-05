@@ -19,9 +19,9 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 18)
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 18)
       doom-variable-pitch-font (font-spec :family "IBM Plex Sans" :size 13)
-      doom-big-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 24))
+      doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 24))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -53,3 +53,66 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t)))
+  (set-lsp-priority! 'ccls 2)) ; optional as ccls is the default in Doom
+
+(after! haskell-mode ; in this case the major mode and package named the same thing
+  (set-ligatures! 'haskell-mode
+    :true "True" :false "False"
+    ; this will replace not only definitions
+    ; but coresponding functions aswell
+    :bool "bool"
+    :true "True"
+    :false "False"
+    :int "Int"
+    :float "Float"
+    :not "not"
+    :in "in"
+    :and "&&"
+    :and "and"
+    :or "||"
+    :or "or"
+    :not-in "notElem"
+    :lambda "\\"
+    :composition "."
+))
+
+(plist-put! +ligatures-extra-symbols
+  ;; org
+  :name          "»"
+  :src_block     "»"
+  :src_block_end "«"
+  :quote         "“"
+  :quote_end     "”"
+  ;; Functional
+  :lambda        "λ"
+  :def           "ƒ"
+  :composition   "∘"
+  :map           "↦"
+  ;; Types
+  :null          "∅"
+  :true          "ᴛ"
+  :false         "ꜰ"
+  :int           "ℤ"
+  :float         "ℝ"
+  :str           "S"
+  :bool          "ℬ"
+  :list          "ℒ"
+  ;; Flow
+  :not           "￢"
+  :in            "∈"
+  :not-in        "∉"
+  :and           "∧"
+  :or            "∨"
+  :for           "∀"
+  :some          "∃"
+  :return        "⟼"
+  :yield         "⟻"
+  ;; Other
+  :union         "⋃"
+  :intersect     "∩"
+  :diff          "∖"
+  :tuple         "⨂"
+  :dot           "•")  ;; you could also add your own if you want
