@@ -116,3 +116,9 @@
   :diff          "∖"
   :tuple         "⨂"
   :dot           "•")  ;; you could also add your own if you want
+
+;; Sync Google calendar
+(after! org-gcal
+(setq org-gcal-client-id (getenv "ORG_GCAL_CLIENT_ID")
+        org-gcal-client-secret (getenv "ORG_GCAL_CLIENT_SECRET")
+        org-gcal-file-alist '(("deapagan@gmail.com" .  "~/org/deapagan-gcal.org"))))

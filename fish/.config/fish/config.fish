@@ -23,7 +23,10 @@ set -gx PATH $PATH /opt/metasploit-framework/bin
 
 fish_add_path ~/.emacs.d/bin
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ghostpepper/Documents/projects/google-cloud-sdk/path.fish.inc' ]; . '/Users/ghostpepper/Documents/projects/google-cloud-sdk/path.fish.inc'; end
+set -l SECRETSLOC ~/.config/fish/secrets.fish
+
+if test -f $SECRETSLOC
+   . $SECRETSLOC
+end
 
 starship init fish | source
