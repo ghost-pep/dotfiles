@@ -1,0 +1,18 @@
+#+TITLE: Daniel's Dotfiles
+
+* Install
+I am using [[gnu.org/software/stow/][GNU STOW]]  to manage symlinks.
+
+Install the directory at ~~/dotfiles~ so that stow uses ~ as the root dir
+
+You can install a subdirectory using the following:
+#+begin_src bash
+cd ~/dotfiles
+stow $FOLDER
+#+end_src
+
+Remove the symlinks:
+#+begin_src bash
+cd ~/dotfiles
+stow -D $FOLDER
+#+end_src
