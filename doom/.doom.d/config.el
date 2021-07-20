@@ -121,4 +121,29 @@
 (after! org-gcal
 (setq org-gcal-client-id (getenv "ORG_GCAL_CLIENT_ID")
         org-gcal-client-secret (getenv "ORG_GCAL_CLIENT_SECRET")
-        org-gcal-file-alist '(("deapagan@gmail.com" .  "~/org/deapagan-gcal.org"))))
+        org-gcal-file-alist '(("deapagan@gmail.com" . "~/org/deapagan-gcal.org")
+                              ("dap2@andrew.cmu.edu" . "~/org/dap2-cmu-gcal.org")))
+)
+
+;; Define a custom calendar open function with all calendar sources
+(defun open-all-calendars ()
+  (interactive)
+  (org-gcal-fetch)
+  (cfw:open-calendar-buffer
+   :contents-sources
+   (list
+    (cfw:org-create-file-source "Personal" "~/org/deapagan-gcal.org" "Cyan")  ; Personal gmail
+    (cfw:org-create-file-source "CMU" "~/org/dap2-cmu-gcal.org" "Red") ; CMU gmail
+   )))
+
+(map! :leader :desc "Open all of my calendar sources with cfw" "o c" 'open-all-calendars)
+
+;; Make the initial frame on boot be fullscreen
+(add-to-list 'initial-frame-alist '(fullscreen . fullboth))
+
+;; org-gtasks config to sync org todo lists
+(after! org-gtasks
+  (org-gtasks-register-account :name "Daniel Pagan"
+                               :directory "~/org/gtasks/"
+                               :client-id (getenv "ORG_GCAL_CLIENT_ID")
+                               :client-secret (getenv "ORG_GCAL_CLIENT_SECRET")))
