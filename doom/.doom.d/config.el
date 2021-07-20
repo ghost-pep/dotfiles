@@ -147,3 +147,9 @@
                                :directory "~/org/gtasks/"
                                :client-id (getenv "ORG_GCAL_CLIENT_ID")
                                :client-secret (getenv "ORG_GCAL_CLIENT_SECRET")))
+
+;; configure lastpass account
+(after! lastpass
+  (setq lastpass-user "deapagan@gmail.com")
+  (setq lastpass-trust-login t)
+  (lastpass-auth-source-enable))

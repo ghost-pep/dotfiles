@@ -52,3 +52,4 @@
 (package! protobuf-mode)
 (package! org-gtasks
     :recipe (:host github :repo "JulienMasson/org-gtasks"))
+(package! lastpass)
