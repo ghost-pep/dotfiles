@@ -76,7 +76,6 @@
     :or "or"
     :not-in "notElem"
     :lambda "\\"
-    :composition "."
 ))
 
 (plist-put! +ligatures-extra-symbols

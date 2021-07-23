@@ -4,6 +4,9 @@ set -gx PATH /usr/local/sbin /usr/local/bin $PATH
 set -gx GOPATH ~/go
 set -gx PATH $GOPATH/bin $PATH
 
+# add ghci to path
+set -gx PATH ~/.ghcup/bin $PATH
+
 set -gx JAVA_HOME (/usr/libexec/java_home)
 
 # colored man output
