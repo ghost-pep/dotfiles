@@ -23,9 +23,11 @@ myConfig =
                           *> spawn
                                "scrot -s '/home/ghostpepper/Pictures/%Y-%m-%d_$p_scrot.png'"
                         )
-                      , ("M-]"                  , spawn "google-chrome-stable")
-                      , ("M-S-return"           , spawn "alacritty")
-                      , ("<XF86MonBrightnessUp>", spawn "brightnessctl s +10%")
+                      , ("M-]"                   , spawn "google-chrome-stable")
+                      , ("M-S-return"            , spawn "alacritty")
+                      , ("<XF86AudioRaiseVolume>", spawn "pamixer -i 10")
+                      , ("<XF86AudioLowerVolume>", spawn "pamixer -d 10")
+                      , ("<XF86MonBrightnessUp>" , spawn "brightnessctl s +10%")
                       , ( "<XF86MonBrightnessDown>"
                         , spawn "brightnessctl s 10%-"
                         )
