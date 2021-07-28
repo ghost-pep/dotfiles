@@ -2,6 +2,7 @@ import           XMonad
 
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.Magnifier
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Util.EZConfig
@@ -13,6 +14,7 @@ main = xmonad . ewmh =<< xmobar myConfig
 myConfig =
   def { modMask         = mod4Mask
       , layoutHook      = myLayout
+      , manageHook      = myManageHook
       , handleEventHook = handleEventHook def <+> fullscreenEventHook
       }  -- Rebind Mod to the Super key
     `additionalKeysP` [ ("M-S-z", spawn "xsecurelock")
@@ -21,9 +23,20 @@ myConfig =
                           *> spawn
                                "scrot -s '/home/ghostpepper/Pictures/%Y-%m-%d_$p_scrot.png'"
                         )
-                      , ("M-]"       , spawn "google-chrome-stable")
-                      , ("M-S-return", spawn "alacritty")
+                      , ("M-]"                  , spawn "google-chrome-stable")
+                      , ("M-S-return"           , spawn "alacritty")
+                      , ("<XF86MonBrightnessUp>", spawn "brightnessctl s +10%")
+                      , ( "<XF86MonBrightnessDown>"
+                        , spawn "brightnessctl s 10%-"
+                        )
                       ]
+
+myManageHook :: ManageHook
+myManageHook = composeAll
+  [ className =? "Gimp" --> doFloat
+  , isDialog --> doFloat
+  , className =? "wired" --> doFloat
+  ]
 
 myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
  where

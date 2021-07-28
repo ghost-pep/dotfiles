@@ -3,15 +3,8 @@
          , bgColor  = "#1d1f21"
          , fgColor  = "#c5c8c6"
          , position = TopW L 100
-         , commands = [ Run Weather "EGPF"
-                          [ "--template", "<weather> <tempC>°C"
-                          , "-L", "0"
-                          , "-H", "25"
-                          , "--low"   , "lightblue"
-                          , "--normal", "#f8f8f2"
-                          , "--high"  , "red"
-                          ] 36000
-                      , Run Cpu
+         , commands = [
+                      Run Cpu
                           [ "-L", "3"
                           , "-H", "50"
                           , "--high"  , "red"
@@ -27,8 +20,14 @@
                       , Run Swap [] 10
                       , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
                       , Run StdinReader
+                        , Run BatteryP ["BAT1"]
+                        ["-t", "Batt: <acstatus>"
+                        , "-L", "10", "-H", "80"
+                        , "-l", "red", "-h", "green"
+                        , "--", "-O", "Charging", "-o", "<left>%"
+                        ] 10
                       ]
          , sepChar  = "%"
          , alignSep = "}{"
-         , template = "%StdinReader% }{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %EGPF% | %date% "
+         , template = "%StdinReader% }{ %alsa:default:Master% | %cpu% | %memory% | %battery% | %date% "
          }
