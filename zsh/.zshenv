@@ -11,3 +11,6 @@ typeset -U PATH path
 
 # make it available duh
 export PATH
+
+# source secrets
+source /home/ghostpepper/.secrets
