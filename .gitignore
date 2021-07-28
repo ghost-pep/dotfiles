@@ -10,3 +10,6 @@ tmp/
 *.chs.h
 *.dyn_o
 *.dyn_hi
+
+xmonad/.xmonad/xmonad-x86_64-linux
+xmonad/.xmonad/xmonad.errors
