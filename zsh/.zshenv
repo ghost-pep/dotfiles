@@ -14,3 +14,9 @@ export PATH
 
 # source secrets
 source /home/ghostpepper/.secrets
+
+# use gpg-agent as ssh agent so I get nice pinentry rather than ssh text password entry
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
