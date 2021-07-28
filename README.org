@@ -1,7 +1,7 @@
 #+TITLE: Daniel's Dotfiles
 
 * Install
-I am using [[gnu.org/software/stow/][GNU STOW]]  to manage symlinks.
+I am using [[https://www.gnu.org/software/stow/][GNU STOW]]  to manage symlinks.
 
 Install the directory at ~~/dotfiles~ so that stow uses ~ as the root dir
 
