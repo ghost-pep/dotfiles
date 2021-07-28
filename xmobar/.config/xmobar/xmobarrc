@@ -2,7 +2,7 @@
          , font     = "xft:iosevka-9"
          , bgColor  = "#1d1f21"
          , fgColor  = "#c5c8c6"
-         , position = TopW L 100
+         , position = Bottom
          , commands = [
                       Run Cpu
                           [ "-L", "3"
@@ -20,7 +20,7 @@
                       , Run Swap [] 10
                       , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
                       , Run StdinReader
-                        , Run BatteryP ["BAT1"]
+                      , Run BatteryP ["BAT1"]
                         ["-t", "Batt: <acstatus>"
                         , "-L", "10", "-H", "80"
                         , "-l", "red", "-h", "green"
