@@ -13,6 +13,7 @@ main = xmonad . ewmh =<< xmobar myConfig
 
 myConfig =
   def { modMask         = mod4Mask
+      , borderWidth     = 0
       , layoutHook      = myLayout
       , manageHook      = myManageHook
       , handleEventHook = handleEventHook def <+> fullscreenEventHook
@@ -23,7 +24,7 @@ myConfig =
                           "scrot -s \"$HOME/Pictures/%Y-%m-%d_\\$p_scrot.png\""
                         )
                       , ("M-]"                   , spawn "google-chrome-stable")
-                      , ("M-S-return"            , spawn "alacritty")
+                      , ("M-S-<Return>"          , spawn "alacritty")
                       , ("<XF86AudioRaiseVolume>", spawn "pamixer -i 10")
                       , ("<XF86AudioLowerVolume>", spawn "pamixer -d 10")
                       , ("<XF86MonBrightnessUp>" , spawn "brightnessctl s +10%")
