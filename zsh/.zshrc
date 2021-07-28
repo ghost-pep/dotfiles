@@ -50,7 +50,7 @@ unsetopt beep
 bindkey -e
 
 # load completion and prompts
-zstyle :compinstall filename '/home/ghostpepper/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit promptinit
 compinit
 promptinit

@@ -13,7 +13,7 @@ typeset -U PATH path
 export PATH
 
 # source secrets
-source /home/ghostpepper/.secrets
+source $HOME/.secrets
 
 # use gpg-agent as ssh agent so I get nice pinentry rather than ssh text password entry
 unset SSH_AGENT_PID

@@ -19,9 +19,8 @@ myConfig =
       }  -- Rebind Mod to the Super key
     `additionalKeysP` [ ("M-S-z", spawn "xsecurelock")
                       , ( "M-S-="
-                        , unGrab
-                          *> spawn
-                               "scrot -s '/home/ghostpepper/Pictures/%Y-%m-%d_$p_scrot.png'"
+                        , unGrab *> spawn
+                          "scrot -s \"$HOME/Pictures/%Y-%m-%d_\\$p_scrot.png\""
                         )
                       , ("M-]"                   , spawn "google-chrome-stable")
                       , ("M-S-return"            , spawn "alacritty")
