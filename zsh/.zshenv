@@ -9,6 +9,8 @@ typeset -U PATH path
 # or prepend
 # path=('/home/david/pear/bin' $path)
 
+path+=("$HOME/.emacs.d/bin")
+
 # make it available duh
 export PATH
 
