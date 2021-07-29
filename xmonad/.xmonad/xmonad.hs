@@ -39,15 +39,17 @@ myConfig =
 myXmobarPP :: PP
 myXmobarPP = def { ppSep           = magenta " • "
                  , ppTitleSanitize = xmobarStrip
-                 , ppCurrent       = wrap (blue "[") (blue "]")
+                 , ppCurrent       = blue . wrap (green "[") (green "]")
                  , ppUrgent        = red . wrap (yellow "!") (yellow "!")
+                 , ppOrder         = \[ws, _, win] -> [ws, win]
                  }
  where
-  blue, magenta, red, yellow :: String -> String
+  blue, magenta, red, yellow, green :: String -> String
   magenta = xmobarColor "#c9b4cf" ""
   blue    = xmobarColor "#81a2be" ""
   yellow  = xmobarColor "#f0c674" ""
   red     = xmobarColor "#cc6666" ""
+  green   = xmobarColor "#b5bd68" ""
 
 myManageHook :: ManageHook
 myManageHook = composeAll
