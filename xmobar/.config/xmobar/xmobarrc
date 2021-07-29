@@ -1,33 +1,34 @@
   Config { overrideRedirect = False
-         , font     = "xft:iosevka-9"
+         , font     = "xft:FiraCode Nerd Font Mono:size=11"
          , bgColor  = "#1d1f21"
          , fgColor  = "#c5c8c6"
          , position = Bottom
          , commands = [
                       Run Cpu
-                          [ "-L", "3"
+                          [ "--template", "<fc=#81a2be></fc> <total>%"
+                          , "-L", "3"
                           , "-H", "50"
                           , "--high"  , "red"
                           , "--normal", "green"
                           ] 10
                       , Run Alsa "default" "Master"
-                          [ "--template", "<volumestatus>"
+                          [ "--template", "<status> <volume>"
                           , "--suffix"  , "True"
                           , "--"
-                          , "--on", ""
+                          , "--on", "<fc=#81a2be>墳</fc>"
+                          , "--off", "ﱝ"
                           ]
-                      , Run Memory ["--template", "Mem: <usedratio>%"] 10
                       , Run Swap [] 10
-                      , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
+                      , Run Date "<fc=#81a2be></fc> %a %m-%d %H:%M" "date" 10
                       , Run StdinReader
                       , Run BatteryP ["BAT1"]
-                        ["-t", "Batt: <acstatus>"
+                        ["-t", "<acstatus>"
                         , "-L", "10", "-H", "80"
                         , "-l", "red", "-h", "green"
-                        , "--", "-O", "Charging", "-o", "<left>%"
+                        , "--", "-O", "<fc=#81a2be></fc> <left>%", "-o", "<fc=#81a2be></fc> <left>%"
                         ] 10
                       ]
          , sepChar  = "%"
          , alignSep = "}{"
-         , template = "%StdinReader% }{ %alsa:default:Master% | %cpu% | %memory% | %battery% | %date% "
+         , template = "%StdinReader% }{ %alsa:default:Master% %cpu% %battery% %date%"
          }
