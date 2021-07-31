@@ -27,6 +27,7 @@ myConfig =
                         )
                       , ("M-]"                   , spawn "google-chrome-stable")
                       , ("M-S-<Return>"          , spawn "alacritty")
+                      , ("M-<Space>"             , spawn "rofi -show drun")
                       , ("<XF86AudioRaiseVolume>", spawn "pamixer -i 10")
                       , ("<XF86AudioLowerVolume>", spawn "pamixer -d 10")
                       , ("<XF86AudioMute>"       , spawn "pamixer -t")
