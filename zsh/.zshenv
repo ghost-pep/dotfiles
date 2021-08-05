@@ -10,6 +10,8 @@ typeset -U PATH path
 # path=('/home/david/pear/bin' $path)
 
 path+=("$HOME/.emacs.d/bin")
+path+=("$HOME/.ghcup/bin")
+path+=("$HOME/.cabal/bin")
 
 # make it available duh
 export PATH
