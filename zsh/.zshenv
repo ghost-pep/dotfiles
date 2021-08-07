@@ -10,8 +10,11 @@ typeset -U PATH path
 # path=('/home/david/pear/bin' $path)
 
 path+=("$HOME/.emacs.d/bin")
-path+=("$HOME/.ghcup/bin")
-path+=("$HOME/.cabal/bin")
+# So this is weird. In arch, we dynamically link haskell, but for development its easier to statically link
+# I have removed this in order to let xmonad find the right ghc installation for dynamic linking
+# If I want to do dev work, I have to manually call the staic ghc
+# path=("$HOME/.ghcup/bin" $path)
+path=("$HOME/.cabal/bin" $path)
 
 # make it available duh
 export PATH
