@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       <home-manager/nixos>
     ];
 
@@ -128,6 +128,9 @@
       noto-fonts
       noto-fonts-emoji
       ibm-plex
+      spotify
+      slack
+      discord
     ];
 
     xsession.enable = true;
