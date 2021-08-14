@@ -25,7 +25,7 @@ myConfig =
                         , unGrab *> spawn
                           "scrot -s \"$HOME/Pictures/%Y-%m-%d_\\$p_scrot.png\""
                         )
-                      , ("M-]"                   , spawn "google-chrome-stable")
+                      , ("M-]"                   , sendMessage NextLayout)
                       , ("M-S-<Return>"          , spawn "alacritty")
                       , ("M-<Space>"             , spawn "rofi -show drun")
                       , ("<XF86AudioRaiseVolume>", spawn "pamixer -i 10")
@@ -60,6 +60,7 @@ myManageHook :: ManageHook
 myManageHook = composeAll
   [ className =? "Gimp" --> doFloat
   , isDialog --> doFloat
+  , isFullscreen --> doFullFloat
   , className =? "wired" --> doFloat
   ]
 
