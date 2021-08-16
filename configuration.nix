@@ -136,6 +136,7 @@
     xsession.enable = true;
     # set the background with feh here
     xsession.initExtra = "~/.fehbg &";
+    xsession.profileExtra = "source ~/.secrets";
     xsession.windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
