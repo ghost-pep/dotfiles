@@ -32,7 +32,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "US/Central";
+  time.timeZone = "America/New_York";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -87,6 +87,20 @@
   # services.xserver.xkbOptions = "eurosign:e";
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
+  # Allow fingerprint auth if enrolled with =fprintd-enroll <username>=
+  # Unfortunately, the ideapad does not have a driver that is compatible with fprintd :(
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
+  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+  # security.pam.services.login.fprintAuth = true;
+
+  # Allow updating of firmware from D-Bus
+  # You can use this with the following:
+  # - fwupdmgr get-devices
+  # - fwupdmgr refresh --force
+  # - fwupdmgr update
+  services.fwupd.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ghostpepper = {
     isNormalUser = true;
@@ -131,6 +145,12 @@
       spotify
       slack
       discord
+      udisks
+      networkmanagerapplet
+      lshw
+      pciutils
+      usbutils
+      zoom-us
     ];
 
     xsession.enable = true;
@@ -173,6 +193,7 @@
         enableAutosuggestions = true;
         shellAliases = {
           update = "sudo nixos-rebuild switch";
+          upgrade = "sudo nixos-rebuild switch --upgrade"
         };
         oh-my-zsh = {
           enable = true;
@@ -224,6 +245,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  # networking.enableIPv6 = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
