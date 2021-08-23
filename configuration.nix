@@ -165,6 +165,7 @@
       gomodifytags
       gotests
       gore
+      ghc
       hlint
       cabal-install
       jq
