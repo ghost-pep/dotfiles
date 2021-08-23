@@ -71,4 +71,4 @@ myLayout = tiled ||| Mirror tiled ||| Full
   ratio   = 1 / 2    -- Default proportion of screen occupied by master pane
   delta   = 3 / 100  -- Percent of screen to increment by when resizing panes
 
-myWorkspaces = ["Web", "Edit", "Msg", "Music"] ++ map show [5 .. 9]
+myWorkspaces = ["Web", "Edit", "Msg", "Music", "Meeting"] ++ map show [6 .. 9]

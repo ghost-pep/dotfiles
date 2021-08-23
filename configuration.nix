@@ -5,11 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-      <home-manager/nixos>
-    ];
+  imports = [ # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+    <home-manager/nixos>
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -51,13 +50,13 @@
     keyMap = "us";
   };
 
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull; # support for bluetooth headsets
+  hardware.pulseaudio.package =
+    pkgs.pulseaudioFull; # support for bluetooth headsets
   hardware.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
 
@@ -70,13 +69,11 @@
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "ghostpepper";
   services.xserver.displayManager.defaultSession = "xsession";
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "xsession";
-      start = ''exec $HOME/.xsession'';
-    }
-  ];
+  services.xserver.displayManager.session = [{
+    manage = "desktop";
+    name = "xsession";
+    start = "exec $HOME/.xsession";
+  }];
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -111,46 +108,82 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
-  home-manager.users.ghostpepper  = { pkgs, ... }: {
+  home-manager.users.ghostpepper = { pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs; [
-      alacritty
-      imagemagick
-      xclip
-      gimp
-      pavucontrol
-      google-chrome
-      xournalpp
-      stow
-      ripgrep
-      fd
-      brightnessctl
-      playerctl
-      pamixer
-      xsecurelock
-      scrot
-      thefuck
-      feh
-      gnumake
-      aspell
-      aspellDicts.en
-      haskellPackages.xmobar
-      ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-        epkgs.vterm
-      ]))
+
+      # Fonts
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
       noto-fonts
       noto-fonts-emoji
       ibm-plex
-      spotify
-      slack
-      discord
+
+      # Diagnostic Tools
+      brightnessctl
+      playerctl
+      pamixer
+      stow
+      thefuck
+      xclip
       udisks
       networkmanagerapplet
       lshw
       pciutils
       usbutils
+
+      # Applications
+      scrot
+      haskellPackages.xmobar
+      xsecurelock
+      feh
+      gimp
+      pavucontrol
+      google-chrome
+      xournalpp
+      alacritty
+      spotify
+      slack
+      discord
       zoom-us
+      signal-desktop
+
+      # Emacs
+      # deps for doom emacs doctor to not complain
+      # definitely use nix-env for actualy project development
+      ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
+      ripgrep
+      fd
+      imagemagick
+      nixfmt
+      aspell
+      aspellDicts.en
+      gnumake
+      cmake
+      glslang
+      go
+      gocode
+      gomodifytags
+      gotests
+      gore
+      hlint
+      cabal-install
+      jq
+      mdl
+      pandoc
+      python39
+      black
+      python39Packages.pyflakes
+      python39Packages.isort
+      python39Packages.nose
+      python39Packages.pytest
+      pipenv
+      rust-analyzer
+      cargo
+      rustc
+      shellcheck
+      html-tidy
+      nodePackages.stylelint
+      nodePackages.js-beautify
     ];
 
     xsession.enable = true;
@@ -193,7 +226,7 @@
         enableAutosuggestions = true;
         shellAliases = {
           update = "sudo nixos-rebuild switch";
-          upgrade = "sudo nixos-rebuild switch --upgrade"
+          upgrade = "sudo nixos-rebuild switch --upgrade";
         };
         oh-my-zsh = {
           enable = true;
@@ -229,7 +262,6 @@
     curl
     tmux
   ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
