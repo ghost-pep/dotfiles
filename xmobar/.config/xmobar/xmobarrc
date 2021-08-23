@@ -3,20 +3,22 @@
          , bgColor  = "#1d1f21"
          , fgColor  = "#c5c8c6"
          , position = Bottom
+         , lowerOnStart = True
+         , iconRoot = "."
          , commands = [
                       Run Cpu
                           [ "--template", "<fc=#81a2be></fc> <total>%"
                           , "-L", "3"
                           , "-H", "50"
-                          , "--high"  , "red"
-                          , "--normal", "green"
+                          , "--high"  , "#cc6666"
+                          , "--normal", "#b5bd68"
                           ] 10
                       , Run Alsa "default" "Master"
                           [ "--template", "<status> <volume>"
                           , "--suffix"  , "True"
                           , "--"
                           , "--on", "<fc=#81a2be>墳</fc>"
-                          , "--off", "ﱝ"
+                          , "--off", "<fc=#cc6666>ﱝ</fc>"
                           ]
                       , Run Swap [] 10
                       , Run Date "<fc=#81a2be></fc> %a %m-%d %H:%M" "date" 10
@@ -24,11 +26,14 @@
                       , Run BatteryP ["BAT1"]
                         ["-t", "<acstatus>"
                         , "-L", "10", "-H", "80"
-                        , "-l", "red", "-h", "green"
+                        , "-l", "#cc6666", "-h", "#b5bd68"
                         , "--", "-O", "<fc=#81a2be></fc> <left>%", "-o", "<fc=#81a2be></fc> <left>%"
+                        ] 10
+                      , Run DynNetwork
+                        ["-t", "<fc=#81a2be></fc> <dev> <fc=#b5bd68><rxvbar></fc><fc=#f0c674><txvbar></fc>"
                         ] 10
                       ]
          , sepChar  = "%"
          , alignSep = "}{"
-         , template = "%StdinReader% }{ %alsa:default:Master% %cpu% %battery% %date%"
+         , template = " <fc=#81a2be>ﬦ</fc>  <fc=#c9b4cf>%StdinReader%</fc> }{ %alsa:default:Master% | %cpu% | %battery% | %dynnetwork% | %date%"
          }
