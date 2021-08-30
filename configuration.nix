@@ -130,6 +130,7 @@
       lshw
       pciutils
       usbutils
+      nmap
 
       # Applications
       scrot
@@ -151,6 +152,7 @@
       # deps for doom emacs doctor to not complain
       # definitely use nix-env for actualy project development
       ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]))
+      texlive.combined.scheme-full
       ripgrep
       fd
       imagemagick
