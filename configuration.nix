@@ -135,6 +135,9 @@
       usbutils
       nmap
       virt-manager
+      binutils
+      file
+      p7zip
 
       # Applications
       scrot
