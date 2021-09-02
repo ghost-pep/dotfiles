@@ -150,6 +150,11 @@
                                :client-id (getenv "ORG_GCAL_CLIENT_ID")
                                :client-secret (getenv "ORG_GCAL_CLIENT_SECRET")))
 
+;; org-gtasks map bindings
+(map! :leader :desc "Gtasks" "n g g" 'org-gtasks)
+(map! :leader :desc "Gtasks push current" "n g p" 'org-gtasks-push-current)
+(map! :leader :desc "Gtasks fetch current" "n g f" 'org-gtasks-pull-current)
+
 ;; configure lastpass account
 (after! lastpass
   (setq lastpass-user "deapagan@gmail.com")
