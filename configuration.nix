@@ -138,6 +138,7 @@
       binutils
       file
       p7zip
+      unzip
 
       # Applications
       scrot
@@ -181,6 +182,7 @@
       mdl
       pandoc
       python39
+      python-language-server
       black
       python39Packages.pyflakes
       python39Packages.isort
@@ -194,6 +196,10 @@
       html-tidy
       nodePackages.stylelint
       nodePackages.js-beautify
+
+      # Software Dev
+      direnv
+      niv
     ];
 
     xsession.enable = true;
@@ -243,6 +249,9 @@
           plugins = [ "git" "thefuck" ];
           theme = "robbyrussell";
         };
+        initExtra = ''
+          eval "$(direnv hook zsh)"
+        '';
       };
       git = {
         enable = true;

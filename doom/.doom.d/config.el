@@ -160,3 +160,12 @@
   (setq lastpass-user "deapagan@gmail.com")
   (setq lastpass-trust-login t)
   (lastpass-auth-source-enable))
+
+;; fix for nixos python language server
+;; https://github.com/hlissner/doom-emacs/issues/2380
+(after! lsp-python-ms
+  (setq lsp-python-ms-executable (executable-find "python-language-server"))
+  (set-lsp-priority! 'mspyls 1))
+
+;; auto fill (insert line breaks at 80 chars) for every major mode
+(setq-default auto-fill-function 'do-auto-fill)
