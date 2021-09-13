@@ -148,6 +148,8 @@
       gimp
       pavucontrol
       google-chrome
+      vivaldi
+      vivaldi-ffmpeg-codecs
       xournalpp
       alacritty
       spotify
