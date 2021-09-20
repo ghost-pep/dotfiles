@@ -272,6 +272,15 @@
           sidebar-mode = true;
         };
       };
+      ssh = {
+        enable = true;
+        extraConfig = ''
+          Host infoseclab
+              HostName 192.168.2.83
+              User dayynn
+              ProxyCommand nc -x localhost:8123 %h %p
+        '';
+      };
     };
   };
 
