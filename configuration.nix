@@ -157,6 +157,7 @@
       discord
       zoom-us
       signal-desktop
+      teams
 
       # Emacs
       # deps for doom emacs doctor to not complain
